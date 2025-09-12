@@ -274,7 +274,7 @@ class Login extends \Opencart\System\Engine\Controller {
 				$this->session->data[$this->config->get('config_tax_customer') . '_address'] = $address_info;
 			}
 
-			$this->model_account_customer->editToken($email, '');
+			$this->model_account_customer->deleteTokenByCode($token);
 
 			// Create customer token
 			$this->session->data['customer_token'] = oc_token(26);
@@ -283,7 +283,7 @@ class Login extends \Opencart\System\Engine\Controller {
 		} else {
 			$this->session->data['error'] = $this->language->get('error_login');
 
-			$this->model_account_customer->editToken($email, '');
+			$this->model_account_customer->deleteTokenByCode($token);
 
 			$this->response->redirect($this->url->link('account/login', 'language=' . $this->config->get('config_language'), true));
 		}
