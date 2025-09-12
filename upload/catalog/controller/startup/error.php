@@ -72,7 +72,7 @@ class Error extends \Opencart\System\Engine\Controller {
 		$output  = 'Error: ' . $e->getMessage() . "\n";
 		$output .= 'File: ' . $e->getFile() . "\n";
 		$output .= 'Line: ' . $e->getLine() . "\n\n";
-
+		/*
 		foreach ($e->getTrace() as $key => $trace) {
 			$output .= 'Backtrace: ' . $key . "\n";
 			$output .= 'File: ' . $trace['file'] . "\n";
@@ -84,13 +84,13 @@ class Error extends \Opencart\System\Engine\Controller {
 
 			$output .= 'Function: ' . $trace['function'] . "\n\n";
 		}
-
+		*/
 		if ($this->config->get('config_error_log')) {
 			$this->log->write(trim($output));
 		}
 
 		if ($this->config->get('config_error_display')) {
-			echo $output;
+			echo nl2br($output);
 		} else {
 			header('Location: ' . $this->config->get('error_page'));
 			exit();
