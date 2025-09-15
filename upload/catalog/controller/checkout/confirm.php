@@ -277,7 +277,7 @@ class Confirm extends \Opencart\System\Engine\Controller {
 
 			if (!$order_id) {
 				$this->session->data['order_id'] = $this->model_checkout_order->addOrder($order_data);
-			} elseif ($order_info && !$order_info['order_status_id']) {
+			} elseif ($order_info) {
 				$this->model_checkout_order->editOrder($order_id, $order_data);
 			}
 		}
