@@ -34,6 +34,10 @@ class Language extends \Opencart\System\Engine\Controller {
 
 		$code = $data['code'];
 
+		if (!isset($data['languages'][$code])) {
+			$code = $data['code'] = $this->config->get('config_language');
+		}
+
 		$data['name'] = $data['languages'][$code]['name'];
 		$data['image'] = $data['languages'][$code]['image'];
 
